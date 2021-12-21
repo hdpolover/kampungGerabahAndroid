@@ -25,12 +25,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/daftarUmkm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <Button
+                android:background="?android:attr/selectableItemBackground"
                 android:id="@+id/tokogerabah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,11 +47,13 @@
             android:orientation="horizontal">
 
             <Button
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <Button
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
