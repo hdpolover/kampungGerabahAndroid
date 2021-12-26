@@ -28,7 +28,19 @@ public class SplashActivity extends AppCompatActivity {
 
         binding.textViewVersion.setText("Ver " + BuildConfig.VERSION_NAME);
 
-        toMainActivity();
+        //toMainActivity();
+
+        int loadingTime = 2000;
+        new Handler().postDelayed(() -> {
+//            if (AppPreference.getUser(this) != null) {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            finish();
+//            } else {
+//                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+//                finish();
+//            }
+        }, loadingTime);
+
     }
 
     private void toMainActivity() {

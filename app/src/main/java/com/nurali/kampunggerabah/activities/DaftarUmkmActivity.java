@@ -17,5 +17,7 @@ public class DaftarUmkmActivity extends AppCompatActivity {
         binding = ActivityDaftarUmkmBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        binding.titleText.setText("Daftar UMKM");
     }
 }

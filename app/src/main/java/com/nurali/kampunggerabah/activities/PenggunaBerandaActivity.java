@@ -18,18 +18,41 @@ public class PenggunaBerandaActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.daftarUmkm.setOnClickListener(new View.OnClickListener() {
+
+        binding.infoCv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PenggunaBerandaActivity.this, InfoAplikasiActivity.class));
+            }
+        });
+
+        binding.bantuanCv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PenggunaBerandaActivity.this, InfoAplikasiActivity.class));
+            }
+        });
+
+        binding.tokoGerabahCv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PenggunaBerandaActivity.this, InfoAplikasiActivity.class));
+            }
+        });
+
+        binding.daftarUmkmCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PenggunaBerandaActivity.this, DaftarUmkmActivity.class));
             }
         });
 
-        binding.tokogerabah.setOnClickListener(new View.OnClickListener() {
+        binding.buktiBayarCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PenggunaBerandaActivity.this, TokoGerabahActivity.class));
+                startActivity(new Intent(PenggunaBerandaActivity.this, InfoAplikasiActivity.class));
             }
         });
+
     }
 }

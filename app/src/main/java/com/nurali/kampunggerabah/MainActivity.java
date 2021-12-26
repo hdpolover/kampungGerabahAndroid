@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.nurali.kampunggerabah.databinding.ActivityLoginBinding;
 import com.nurali.kampunggerabah.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

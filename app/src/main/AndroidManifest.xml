@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nurali.kampunggerabah">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KampungGerabah.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.TokoGerabahActivity"></activity>
+        <activity android:name=".activities.InfoAplikasiActivity"></activity>
+        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.TokoGerabahActivity" />
         <activity android:name=".activities.DaftarUmkmActivity" />
         <activity android:name=".activities.PenggunaBerandaActivity" />
         <activity
