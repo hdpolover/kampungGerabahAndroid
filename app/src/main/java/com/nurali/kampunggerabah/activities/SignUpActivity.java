@@ -38,7 +38,28 @@ public class SignUpActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        peran = "Customer";
+
         apiInterface = ApiClient.getClient();
+
+        apiInterface.getPenggunaByEmail(
+                "ali@email.com"
+        ).enqueue(new Callback<PenggunaResponse>() {
+            @Override
+            public void onResponse(Call<PenggunaResponse> call, Response<PenggunaResponse> response) {
+                if (response != null) {
+                    if (response.body().status) {
+                        Toast.makeText(getApplicationContext(), response.body().data.get(0).username, Toast.LENGTH_SHORT).show();
+                        Log.e("ds", response.body().data.get(0).username);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PenggunaResponse> call, Throwable t) {
+                Log.e("login", t.getMessage());
+            }
+        });
 
         binding.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
