@@ -24,8 +24,8 @@
         android:layout_width="230dp"
         android:layout_height="230dp"
         android:src="@drawable/logo_mbah"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputUsername"
@@ -78,6 +78,7 @@
         android:textAlignment="center"
         android:text="Belum punya akun? Daftar sekarang"
         android:textSize="15dp"
+        android:padding="20dp"
         android:textColor="@color/black"/>
 
 </LinearLayout>

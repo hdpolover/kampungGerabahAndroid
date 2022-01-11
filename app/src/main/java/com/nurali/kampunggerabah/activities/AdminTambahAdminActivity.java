@@ -3,54 +3,44 @@ package com.nurali.kampunggerabah.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.nurali.kampunggerabah.MainActivity;
-import com.nurali.kampunggerabah.R;
 import com.nurali.kampunggerabah.api.ApiClient;
 import com.nurali.kampunggerabah.api.ApiInterface;
 import com.nurali.kampunggerabah.api.responses.BaseResponse;
 import com.nurali.kampunggerabah.api.responses.PenggunaResponse;
-import com.nurali.kampunggerabah.databinding.ActivityMainBinding;
-import com.nurali.kampunggerabah.databinding.ActivitySignUpBinding;
-import com.nurali.kampunggerabah.preferences.AppPreference;
+import com.nurali.kampunggerabah.databinding.ActivityAdminTambahAdminBinding;
+import com.nurali.kampunggerabah.databinding.ActivityAdminTambahPengrajinBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity {
-    ActivitySignUpBinding binding;
+public class AdminTambahAdminActivity extends AppCompatActivity {
+
+    ActivityAdminTambahAdminBinding binding;
     ApiInterface apiInterface;
-    String peran = "customer";
 
     ProgressDialog progressDialog;
+
+    String peran = "admin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        binding = ActivityAdminTambahAdminBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
         apiInterface = ApiClient.getClient();
 
-        binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
+        binding.simpanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkData();
-            }
-        });
-
-        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
             }
         });
     }
@@ -62,8 +52,8 @@ public class SignUpActivity extends AppCompatActivity {
         boolean cekEmail = true;
         boolean cekNoTelp = true;
 
-        if (binding.namaEt.getText().toString().isEmpty()) {
-            binding.namaEt.setError("Mohon isi data berikut");
+        if (binding.usernameEt.getText().toString().isEmpty()) {
+            binding.usernameEt.setError("Mohon isi data berikut");
             cekUsername = false;
         }
 
@@ -93,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if (cekUsername && cekAlamat && cekEmail && cekPassword) {
-            progressDialog = new ProgressDialog(SignUpActivity.this);
+            progressDialog = new ProgressDialog(AdminTambahAdminActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setTitle("Pesan");
             progressDialog.setMessage("Mohon tunggu sebentar...");
@@ -110,12 +100,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                             }
 
-                            Toast.makeText(getApplicationContext(), "Mohon maaf. Email sudah terdaftar. Silakan lakukan login.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Mohon maaf. Email sudah terdaftar..", Toast.LENGTH_SHORT).show();
                         } else {
                             //insert tabel pengguna
                             apiInterface.daftar(
                                     binding.emailEt.getText().toString().trim(),
-                                    binding.namaEt.getText().toString().trim(),
+                                    binding.usernameEt.getText().toString().trim(),
                                     binding.passwordEt.getText().toString().trim(),
                                     binding.alamatEt.getText().toString().trim(),
                                     peran,
@@ -139,12 +129,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                             PenggunaResponse.PenggunaModel p = response.body().data.get(0);
 
-                                                            //save
-                                                            AppPreference.saveUser(SignUpActivity.this, p);
+                                                            onBackPressed();
+                                                            Toast.makeText(getApplicationContext(), "Penambahan admin berhasil!", Toast.LENGTH_SHORT).show();
 
-                                                            Toast.makeText(getApplicationContext(), "Pendaftaran berhasil!", Toast.LENGTH_SHORT).show();
-                                                            startActivity(new Intent(SignUpActivity.this, CustomerBerandaActivity.class));
-                                                            finish();
                                                         }
                                                     }
                                                 }

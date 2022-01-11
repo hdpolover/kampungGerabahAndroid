@@ -1,0 +1,207 @@
+package com.nurali.kampunggerabah.activities;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.material.button.MaterialButton;
+import com.nurali.kampunggerabah.R;
+import com.nurali.kampunggerabah.api.ApiClient;
+import com.nurali.kampunggerabah.api.ApiInterface;
+import com.nurali.kampunggerabah.api.responses.BaseResponse;
+import com.nurali.kampunggerabah.databinding.ActivityCustomerKeranjangBinding;
+import com.nurali.kampunggerabah.databinding.ActivityPengrajinTambahProdukBinding;
+import com.nurali.kampunggerabah.preferences.AppPreference;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class PengrajinTambahProdukActivity extends AppCompatActivity {
+
+    ActivityPengrajinTambahProdukBinding binding;
+    ApiInterface apiInterface;
+
+    MaterialButton simpanBtn, pilihFotoBtn;
+
+    EditText namaEt, stokEt, hargaEt, deskirpsiEt, beratEt;
+    Spinner spinner;
+    ImageView fotoProdukIv;
+
+    ArrayList<String> kategoriList = new ArrayList<>();
+
+    Uri produkImg;
+    int selectedItem = 0;
+    String kategori = "cobek";
+
+    ProgressDialog progressDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityPengrajinTambahProdukBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        apiInterface = ApiClient.getClient();
+
+        simpanBtn = findViewById(R.id.simpanBtn);
+        pilihFotoBtn = findViewById(R.id.pilihFotoBtn);
+        namaEt = findViewById(R.id.namaProdukEt);
+        stokEt = findViewById(R.id.stokEt);
+        beratEt = findViewById(R.id.beratEt);
+        hargaEt = findViewById(R.id.hargaEt);
+        deskirpsiEt = findViewById(R.id.deskripsiEt);
+        spinner = findViewById(R.id.spinner);
+        fotoProdukIv = findViewById(R.id.fotoProdukIv);
+
+        kategoriList.add("cobek");
+        kategoriList.add("vas bunga");
+        kategoriList.add("kendi");
+        kategoriList.add("asbak");
+        kategoriList.add("lampion");
+        kategoriList.add("celengan");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(PengrajinTambahProdukActivity.this, android.R.layout.simple_spinner_item, kategoriList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinner.setAdapter(adapter);
+
+        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedItem = i;
+
+                if (i == 0) {
+                    kategori = "cobek";
+                } else if (i == 1) {
+                    kategori = "vas bunga";
+                } else if (i == 2) {
+                    kategori = "kendi";
+                } else if (i == 3) {
+                    kategori = "asbak";
+                }else if (i == 4) {
+                    kategori = "lampion";
+                }else if (i == 5) {
+                    kategori = "celengan";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        binding.pilihFotoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.Companion.with(PengrajinTambahProdukActivity.this)
+                        .compress(3000)
+                        .start();
+            }
+        });
+
+        binding.simpanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkData();
+            }
+        });
+    }
+
+    private void checkData() {
+        String nama = namaEt.getText().toString().trim();
+        String stok = stokEt.getText().toString().trim();
+        String harga = hargaEt.getText().toString().trim();
+        String berat = beratEt.getText().toString().trim();
+        String deskripsi = deskirpsiEt.getText().toString().trim();
+
+        if (nama.isEmpty() || stok.isEmpty() || harga.isEmpty() || berat.isEmpty() || produkImg == null) {
+            Toast.makeText(PengrajinTambahProdukActivity.this, "Ada field yang masih kosong. Silakan isi terlebih dahulu.", Toast.LENGTH_LONG).show();
+        } else {
+            progressDialog = new ProgressDialog(PengrajinTambahProdukActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setTitle("Pesan");
+            progressDialog.setMessage("Mohon tunggu sebentar...");
+            progressDialog.show();
+
+            RequestBody namaR = RequestBody.create(MediaType.parse("text/plain"), nama);
+            RequestBody stokR = RequestBody.create(MediaType.parse("text/plain"), stok);
+            RequestBody hargaR = RequestBody.create(MediaType.parse("text/plain"), harga);
+            RequestBody beratR = RequestBody.create(MediaType.parse("text/plain"), berat);
+            RequestBody deskripsiR = RequestBody.create(MediaType.parse("text/plain"), deskripsi);
+            RequestBody katR = RequestBody.create(MediaType.parse("text/plain"), kategori);
+            RequestBody idR = RequestBody.create(MediaType.parse("text/plain"), AppPreference.getUser(this).idPengguna);
+
+
+            //image
+            File file = new File(produkImg.getPath());
+            RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
+
+            apiInterface.tambahProduk(
+                    namaR,
+                    deskripsiR,
+                    stokR,
+                    hargaR,
+                    beratR,
+                    katR,
+                    idR,
+                    f
+            ).enqueue(new Callback<BaseResponse>() {
+                @Override
+                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                    if (response != null) {
+                        if (response.body().status) {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+
+                            onBackPressed();
+                            Toast.makeText(PengrajinTambahProdukActivity.this, "Tambah produk berhasil.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(PengrajinTambahProdukActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<BaseResponse> call, Throwable t) {
+                    Log.e("daftar", t.getMessage());
+                }
+            });
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri fileUri = data.getData();
+
+            produkImg = fileUri;
+            binding.fotoProdukIv.setImageURI(fileUri);
+        }
+    }
+}

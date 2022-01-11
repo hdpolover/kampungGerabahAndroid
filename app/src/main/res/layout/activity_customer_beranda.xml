@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PenggunaBerandaActivity"
+    tools:context=".activities.CustomerBerandaActivity"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
@@ -18,13 +18,34 @@
 
             <include layout="@layout/appbar_item"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selamat Datang, Pengguna."
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:layout_margin="20dp"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selamat Datang, "
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/namaPenggunaTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Pengguna."
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -55,7 +76,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_weight="1"
-                    android:id="@+id/daftarUmkmCv"
+                    android:id="@+id/katalogProdukCv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
@@ -72,7 +93,16 @@
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/daftar_umkm"/>
+                            android:src="@drawable/toko_gerabah" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text="Katalog Produk"/>
 
                     </LinearLayout>
 
@@ -80,7 +110,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_weight="1"
-                    android:id="@+id/tokoGerabahCv"
+                    android:id="@+id/transaksiCv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
@@ -97,7 +127,16 @@
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/toko_gerabah"/>
+                            android:src="@drawable/transaksi"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text="Transaksi"/>
 
                     </LinearLayout>
 
@@ -112,8 +151,8 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
-                   android:layout_weight="1"
-                    android:id="@+id/bantuanCv"
+                    android:layout_weight="1"
+                    android:id="@+id/keranjangCv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
@@ -130,51 +169,26 @@
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/bantuan"/>
+                            android:src="@drawable/pengaturan" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text="Keranjang"/>
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_weight="1"
-                    android:id="@+id/buktiBayarCv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:elevation="5dp"
-                    app:contentPadding="20dp">
-
-                    <LinearLayout
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:src="@drawable/bukti_bayar" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    android:id="@+id/infoCv"
+                    android:id="@+id/profilCv"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="50dp"
                     android:elevation="5dp"
@@ -189,7 +203,16 @@
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/info_aplikasi"/>
+                            android:src="@drawable/profil" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text="Profil"/>
 
                     </LinearLayout>
 

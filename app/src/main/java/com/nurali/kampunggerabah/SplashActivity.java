@@ -9,8 +9,13 @@ import android.os.Handler;
 import android.view.View;
 
 import com.github.dhaval2404.imagepicker.BuildConfig;
+import com.nurali.kampunggerabah.activities.AdminBerandaActivity;
+import com.nurali.kampunggerabah.activities.CustomerBerandaActivity;
 import com.nurali.kampunggerabah.activities.LoginActivity;
+import com.nurali.kampunggerabah.activities.PengrajinBerandaActivity;
+import com.nurali.kampunggerabah.api.responses.PenggunaResponse;
 import com.nurali.kampunggerabah.databinding.ActivitySplashBinding;
+import com.nurali.kampunggerabah.preferences.AppPreference;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,17 +33,27 @@ public class SplashActivity extends AppCompatActivity {
 
         binding.textViewVersion.setText("Ver " + BuildConfig.VERSION_NAME);
 
-        //toMainActivity();
-
         int loadingTime = 2000;
         new Handler().postDelayed(() -> {
-//            if (AppPreference.getUser(this) != null) {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            finish();
-//            } else {
-//                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-//                finish();
-//            }
+            if (AppPreference.getUser(this) != null) {
+                PenggunaResponse.PenggunaModel p = AppPreference.getUser(this);
+
+                if (p.peran.equals("customer")) {
+                    startActivity(new Intent(SplashActivity.this, CustomerBerandaActivity.class));
+                    finish();
+                } else if (p.peran.equals("admin")) {
+                    startActivity(new Intent(SplashActivity.this, AdminBerandaActivity.class));
+                    finish();
+                }
+                else if (p.peran.equals("pengrajin")) {
+                    startActivity(new Intent(SplashActivity.this, PengrajinBerandaActivity.class));
+                    finish();
+                }
+
+            } else {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                finish();
+            }
         }, loadingTime);
 
     }
