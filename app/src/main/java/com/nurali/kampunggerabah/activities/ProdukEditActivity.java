@@ -80,6 +80,13 @@ public class ProdukEditActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         fotoProdukIv = findViewById(R.id.fotoProdukIv);
 
+        kategoriList.add("cobek");
+        kategoriList.add("vas bunga");
+        kategoriList.add("kendi");
+        kategoriList.add("asbak");
+        kategoriList.add("lampion");
+        kategoriList.add("celengan");
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ProdukEditActivity.this, android.R.layout.simple_spinner_item, kategoriList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinner.setAdapter(adapter);
@@ -170,47 +177,22 @@ public class ProdukEditActivity extends AppCompatActivity {
         String berat = beratEt.getText().toString().trim();
         String deskripsi = deskirpsiEt.getText().toString().trim();
 
-        if (nama.isEmpty() || stok.isEmpty() || harga.isEmpty() || berat.isEmpty() || produkImg == null) {
+        if (nama.isEmpty() || stok.isEmpty() || harga.isEmpty() || berat.isEmpty()) {
             Toast.makeText(ProdukEditActivity.this, "Ada field yang masih kosong. Silakan isi terlebih dahulu.", Toast.LENGTH_LONG).show();
         } else {
-            progressDialog = new ProgressDialog(ProdukEditActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setTitle("Pesan");
-            progressDialog.setMessage("Mohon tunggu sebentar...");
-            progressDialog.show();
-
-            RequestBody namaR = RequestBody.create(MediaType.parse("text/plain"), nama);
-            RequestBody stokR = RequestBody.create(MediaType.parse("text/plain"), stok);
-            RequestBody hargaR = RequestBody.create(MediaType.parse("text/plain"), harga);
-            RequestBody beratR = RequestBody.create(MediaType.parse("text/plain"), berat);
-            RequestBody deskripsiR = RequestBody.create(MediaType.parse("text/plain"), deskripsi);
-            RequestBody katR = RequestBody.create(MediaType.parse("text/plain"), kategori);
-            RequestBody idR = RequestBody.create(MediaType.parse("text/plain"), AppPreference.getUser(this).idPengguna);
-
-
-            //image
-            File file = new File(produkImg.getPath());
-            RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
-
-            apiInterface.tambahProduk(
-                    namaR,
-                    deskripsiR,
-                    stokR,
-                    hargaR,
-                    beratR,
-                    katR,
-                    idR,
-                    f
+            apiInterface.editProduk(
+                    idProduk,
+                    nama,
+                    deskripsi,
+                    stok,
+                    harga,
+                    berat,
+                    kategori
             ).enqueue(new Callback<BaseResponse>() {
                 @Override
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response != null) {
                         if (response.body().status) {
-                            if (progressDialog.isShowing()) {
-                                progressDialog.dismiss();
-                            }
-
                             onBackPressed();
                             Toast.makeText(ProdukEditActivity.this, "Edit produk berhasil.", Toast.LENGTH_LONG).show();
                         } else {
@@ -227,6 +209,70 @@ public class ProdukEditActivity extends AppCompatActivity {
         }
 
     }
+
+//    private void checkData() {
+//        String nama = namaEt.getText().toString().trim();
+//        String stok = stokEt.getText().toString().trim();
+//        String harga = hargaEt.getText().toString().trim();
+//        String berat = beratEt.getText().toString().trim();
+//        String deskripsi = deskirpsiEt.getText().toString().trim();
+//
+//        if (nama.isEmpty() || stok.isEmpty() || harga.isEmpty() || berat.isEmpty() || produkImg == null) {
+//            Toast.makeText(ProdukEditActivity.this, "Ada field yang masih kosong. Silakan isi terlebih dahulu.", Toast.LENGTH_LONG).show();
+//        } else {
+//            progressDialog = new ProgressDialog(ProdukEditActivity.this);
+//            progressDialog.setCancelable(false);
+//            progressDialog.setTitle("Pesan");
+//            progressDialog.setMessage("Mohon tunggu sebentar...");
+//            progressDialog.show();
+//
+//            RequestBody namaR = RequestBody.create(MediaType.parse("text/plain"), nama);
+//            RequestBody stokR = RequestBody.create(MediaType.parse("text/plain"), stok);
+//            RequestBody hargaR = RequestBody.create(MediaType.parse("text/plain"), harga);
+//            RequestBody beratR = RequestBody.create(MediaType.parse("text/plain"), berat);
+//            RequestBody deskripsiR = RequestBody.create(MediaType.parse("text/plain"), deskripsi);
+//            RequestBody katR = RequestBody.create(MediaType.parse("text/plain"), kategori);
+//            RequestBody idR = RequestBody.create(MediaType.parse("text/plain"), AppPreference.getUser(this).idPengguna);
+//
+//            //image
+//            File file = new File(produkImg.getPath());
+//            RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
+//            MultipartBody.Part f =  MultipartBody.Part.createFormData("image", file.getName(), reqFile);
+//
+//            apiInterface.tambahProduk(
+//                    namaR,
+//                    deskripsiR,
+//                    stokR,
+//                    hargaR,
+//                    beratR,
+//                    katR,
+//                    idR,
+//                    f
+//            ).enqueue(new Callback<BaseResponse>() {
+//                @Override
+//                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+//                    if (response != null) {
+//                        if (response.body().status) {
+//                            if (progressDialog.isShowing()) {
+//                                progressDialog.dismiss();
+//                            }
+//
+//                            onBackPressed();
+//                            Toast.makeText(ProdukEditActivity.this, "Edit produk berhasil.", Toast.LENGTH_LONG).show();
+//                        } else {
+//                            Toast.makeText(ProdukEditActivity.this, "Terjadi kesalahan.", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<BaseResponse> call, Throwable t) {
+//                    Log.e("daftar", t.getMessage());
+//                }
+//            });
+//        }
+//
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

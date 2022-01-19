@@ -86,7 +86,7 @@
                         android:id="@+id/usernameEt"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:hint="Username"
+                        android:hint="Nama Pengrajin"
                         android:inputType="text"
                         android:maxLines="1"
                         android:textColor="@color/black" />
@@ -119,6 +119,36 @@
                         android:layout_width="match_parent"
                         android:hint="Nomor Telepon"
                         android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/latitudeLokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Latitude Lokasi Pengrajin"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/longitudeokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Latitude Lokasi Pengrajin"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>

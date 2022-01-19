@@ -39,7 +39,7 @@ public class PengrajinBerandaActivity extends AppCompatActivity {
         binding.transaksiCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PengrajinBerandaActivity.this, AdminTransaksiActivity.class));
+                startActivity(new Intent(PengrajinBerandaActivity.this, TransaksiDaftarActivity.class));
             }
         });
     }

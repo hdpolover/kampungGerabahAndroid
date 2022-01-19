@@ -7,6 +7,29 @@
     tools:context=".activities.CustomerKeranjangActivity"
     android:orientation="vertical">
 
+    <include layout="@layout/appbar_item"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:contentPadding="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keranjang"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,30 +37,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <include layout="@layout/appbar_item"/>
-
-            <com.google.android.material.card.MaterialCardView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:contentPadding="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="10dp">
+                android:layout_height="wrap_content"
+                android:id="@+id/rv"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/noDataLayout">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/no_data"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Keranjang"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textSize="25dp"
+                    android:text="Belum ada data."
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="18dp"
+                    android:layout_marginTop="30dp"/>
 
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
         </LinearLayout>
 

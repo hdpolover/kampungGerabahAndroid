@@ -39,7 +39,19 @@ public class PenggunaResponse extends BaseResponse {
         @SerializedName("no_telp")
         public String noTelp;
 
-        public PenggunaModel(String idPengguna, String peran, String email, String password, String tanggalDibuat, String status, String foto, String alamat, String username, String noTelp) {
+        @SerializedName("latitude")
+        public String latitude;
+
+        @SerializedName("longitude")
+        public String longitude;
+
+        @SerializedName("id_kota")
+        public String idKota;
+
+        @SerializedName("nama_kota")
+        public String namaKota;
+
+        public PenggunaModel(String idPengguna, String peran, String email, String password, String tanggalDibuat, String status, String foto, String alamat, String username, String noTelp, String latitude, String longitude, String idKota, String namaKota) {
             this.idPengguna = idPengguna;
             this.peran = peran;
             this.email = email;
@@ -50,6 +62,10 @@ public class PenggunaResponse extends BaseResponse {
             this.alamat = alamat;
             this.username = username;
             this.noTelp = noTelp;
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.idKota = idKota;
+            this.namaKota = namaKota;
         }
 
         public String getIdPengguna() {
@@ -130,6 +146,38 @@ public class PenggunaResponse extends BaseResponse {
 
         public void setNoTelp(String noTelp) {
             this.noTelp = noTelp;
+        }
+
+        public String getLatitude() {
+            return latitude;
+        }
+
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
+
+        public String getLongitude() {
+            return longitude;
+        }
+
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
+        }
+
+        public String getIdKota() {
+            return idKota;
+        }
+
+        public void setIdKota(String idKota) {
+            this.idKota = idKota;
+        }
+
+        public String getNamaKota() {
+            return namaKota;
+        }
+
+        public void setNamaKota(String namaKota) {
+            this.namaKota = namaKota;
         }
     }
 }

@@ -37,6 +37,9 @@ public class PengrajinDetailActivity extends AppCompatActivity {
     ApiInterface apiInterface;
 
     String idPengguna;
+
+    String nama, lat, longi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,10 @@ public class PengrajinDetailActivity extends AppCompatActivity {
                         binding.alamatTv.setText(p.alamat);
                         binding.daftarTv.setText("Terdaftar sejak " + p.tanggalDibuat);
 
+                        nama = p.getUsername();
+                        lat = p.getLatitude();
+                        longi = p.getLongitude();
+
                         Glide.with(getApplicationContext())
                                 .load(getString(R.string.base_url) + getString(R.string.profile_link) + p.foto)
                                 .centerCrop()
@@ -74,6 +81,17 @@ public class PengrajinDetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PenggunaResponse> call, Throwable t) {
                 Log.e("login", t.getMessage());
+            }
+        });
+
+        binding.arahBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PengrajinDetailActivity.this, LokasiArahActivity.class);
+                i.putExtra("nama", nama);
+                i.putExtra("lat", lat);
+                i.putExtra("longi", longi);
+                startActivity(i);
             }
         });
 

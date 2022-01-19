@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Kampung Gerabah</string>
-    <string name="base_url">http://192.168.1.10/</string>
-    <string name="profile_link">kampung_gerabah/assets/profil/</string>
-    <string name="produk_link">kampung_gerabah/assets/produk/</string>
+    <string name="base_url">https://kampunggerabah.xyz/</string>
+    <string name="profile_link">assets/profil/</string>
+    <string name="produk_link">assets/produk/</string>
+    <string name="pembayaran_link">assets/pembayaran/</string>
 </resources>

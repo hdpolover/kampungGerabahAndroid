@@ -81,29 +81,22 @@
                         android:id="@+id/daftarTv"
                         android:layout_marginTop="10dp"/>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/alamatTv"
                         android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_gravity="start"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Alamat"/>
 
-                        <TextView
-                            android:id="@+id/alamatTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:text="Alamat"/>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/arahBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:text="Arah" />
-
-                    </LinearLayout>
-
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/arahBtn"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="Arah" />
 
                 </LinearLayout>
 

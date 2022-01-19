@@ -52,6 +52,8 @@ public class AdminTambahPengrajinActivity extends AppCompatActivity {
         boolean cekPassword = true;
         boolean cekEmail = true;
         boolean cekNoTelp = true;
+        boolean cekLat = true;
+        boolean cekLongi = true;
 
         if (binding.usernameEt.getText().toString().isEmpty()) {
             binding.usernameEt.setError("Mohon isi data berikut");
@@ -83,7 +85,17 @@ public class AdminTambahPengrajinActivity extends AppCompatActivity {
             cekNoTelp = false;
         }
 
-        if (cekUsername && cekAlamat && cekEmail && cekPassword) {
+        if (binding.latitudeLokasiEt.getText().toString().isEmpty()) {
+            binding.latitudeLokasiEt.setError("Mohon isi data berikut");
+            cekLat = false;
+        }
+
+        if (binding.longitudeokasiEt.getText().toString().isEmpty()) {
+            binding.longitudeokasiEt.setError("Mohon isi data berikut");
+            cekLongi = false;
+        }
+
+        if (cekUsername && cekAlamat && cekEmail && cekPassword && cekLongi && cekNoTelp && cekLat) {
             progressDialog = new ProgressDialog(AdminTambahPengrajinActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setTitle("Pesan");
@@ -110,7 +122,9 @@ public class AdminTambahPengrajinActivity extends AppCompatActivity {
                                     binding.passwordEt.getText().toString().trim(),
                                     binding.alamatEt.getText().toString().trim(),
                                     peran,
-                                    binding.noTelpEt.getText().toString().trim()
+                                    binding.noTelpEt.getText().toString().trim(),
+                                    binding.latitudeLokasiEt.getText().toString().trim(),
+                                    binding.longitudeokasiEt.getText().toString().trim()
                             ).enqueue(new Callback<BaseResponse>() {
                                 @Override
                                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

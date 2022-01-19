@@ -16,6 +16,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.nurali.kampunggerabah.R;
 import com.nurali.kampunggerabah.activities.PengrajinDetailActivity;
 import com.nurali.kampunggerabah.activities.ProdukDetailActivity;
+import com.nurali.kampunggerabah.api.Helper;
 import com.nurali.kampunggerabah.api.responses.PenggunaResponse;
 import com.nurali.kampunggerabah.api.responses.ProdukResponse;
 
@@ -53,13 +54,13 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
             public void onClick(View view) {
                 Intent i = new Intent(context, ProdukDetailActivity.class);
                 i.putExtra("id_produk", list.get(position).getIdProduk());
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });
 
         holder.judul.setText(list.get(position).getNama());
-        holder.harga.setText("Rp." + list.get(position).getHargaSatuan());
+        holder.harga.setText(Helper.formatRupiah(Integer.parseInt(list.get(position).getHargaSatuan())));
 
         Glide.with(context)
                 .load(context.getString(R.string.base_url) + context.getString(R.string.produk_link) + list.get(position).getGambar())

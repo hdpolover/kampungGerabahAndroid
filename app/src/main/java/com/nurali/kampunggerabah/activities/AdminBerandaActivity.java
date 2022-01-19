@@ -39,7 +39,7 @@ public class AdminBerandaActivity extends AppCompatActivity {
         binding.transaksiCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminBerandaActivity.this, AdminTransaksiActivity.class));
+                startActivity(new Intent(AdminBerandaActivity.this, TransaksiDaftarActivity.class));
             }
         });
 

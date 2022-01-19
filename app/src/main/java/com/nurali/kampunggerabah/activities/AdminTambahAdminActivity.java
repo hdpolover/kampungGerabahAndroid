@@ -109,7 +109,9 @@ public class AdminTambahAdminActivity extends AppCompatActivity {
                                     binding.passwordEt.getText().toString().trim(),
                                     binding.alamatEt.getText().toString().trim(),
                                     peran,
-                                    binding.noTelpEt.getText().toString().trim()
+                                    binding.noTelpEt.getText().toString().trim(),
+                                    "",
+                                    ""
                             ).enqueue(new Callback<BaseResponse>() {
                                 @Override
                                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

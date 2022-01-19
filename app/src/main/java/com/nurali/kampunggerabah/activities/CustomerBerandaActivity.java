@@ -24,14 +24,14 @@ public class CustomerBerandaActivity extends AppCompatActivity {
         binding.katalogProdukCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustomerBerandaActivity.this, InfoAplikasiActivity.class));
+                startActivity(new Intent(CustomerBerandaActivity.this, ProdukKatalogActivity.class));
             }
         });
 
         binding.transaksiCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustomerBerandaActivity.this, InfoAplikasiActivity.class));
+                startActivity(new Intent(CustomerBerandaActivity.this, TransaksiDaftarActivity.class));
             }
         });
 

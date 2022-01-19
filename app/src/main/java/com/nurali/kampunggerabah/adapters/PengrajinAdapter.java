@@ -56,7 +56,7 @@ public class PengrajinAdapter extends RecyclerView.Adapter<PengrajinAdapter.View
             public void onClick(View view) {
                 Intent i = new Intent(context, PengrajinDetailActivity.class);
                 i.putExtra("id_pengguna", list.get(position).getIdPengguna());
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
         });

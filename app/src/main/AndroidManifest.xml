@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,13 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KampungGerabah.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ProdukEditActivity"></activity>
-        <activity android:name=".activities.AdminTransaksiActivity" />
+        <activity android:name=".activities.PengrajinUpdateResiActivity" />
+        <activity android:name=".activities.LokasiArahActivity" />
+        <activity android:name=".activities.PembayaranDetailActivity" />
+        <activity android:name=".activities.TransaksiDetailActivity" />
+        <activity android:name=".activities.TransaksiDaftarActivity" />
+        <activity android:name=".activities.TransaksiBayarActivity" />
+        <activity android:name=".activities.ProdukCekoutActivity" />
+        <activity android:name=".activities.ProdukEditActivity" />
         <activity android:name=".activities.PengrajinTambahProdukActivity" />
         <activity android:name=".activities.PengrajinKatalogProdukActivity" />
         <activity android:name=".activities.ProdukKatalogActivity" />
         <activity android:name=".activities.ProdukDetailActivity" />
-        <activity android:name=".activities.DetailProdukActivity" />
         <activity android:name=".activities.AdminTambahAdminActivity" />
         <activity android:name=".activities.AdminTambahPengrajinActivity" />
         <activity android:name=".activities.PengrajinDetailActivity" />
@@ -34,7 +41,6 @@
         <activity android:name=".activities.AdminBerandaActivity" />
         <activity android:name=".activities.InfoAplikasiActivity" />
         <activity android:name=".activities.SignUpActivity" />
-        <activity android:name=".activities.TokoGerabahActivity" />
         <activity android:name=".activities.DaftarUmkmActivity" />
         <activity android:name=".activities.CustomerBerandaActivity" />
         <activity android:name=".activities.LoginActivity" />
@@ -48,6 +54,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

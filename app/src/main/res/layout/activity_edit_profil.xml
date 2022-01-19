@@ -66,6 +66,22 @@
                     android:layout_marginTop="20dp">
 
                     <EditText
+                        android:id="@+id/usernameEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Nama"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
                         android:id="@+id/emailEt"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
@@ -82,11 +98,11 @@
                     android:layout_marginTop="20dp">
 
                     <EditText
-                        android:id="@+id/usernameEt"
+                        android:id="@+id/passwordEt"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:hint="Username"
-                        android:inputType="text"
+                        android:hint="Password"
+                        android:inputType="textPassword"
                         android:maxLines="1"
                         android:textColor="@color/black" />
 
@@ -95,22 +111,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-                    <EditText
-                        android:id="@+id/alamatEt"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:hint="Alamat"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/telp">
 
                     <EditText
                         android:id="@+id/noTelpEt"
@@ -121,6 +123,81 @@
                         android:maxLines="1"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                    android:id="@+id/al">
+
+                <EditText
+                    android:id="@+id/alamatEt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="Alamat"
+                    android:inputType="text"
+                    android:minLines="1"
+                    android:maxLines="5"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/lat">
+
+                    <EditText
+                        android:id="@+id/latitudeLokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Latitude Lokasi"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="5"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/longi">
+
+                    <EditText
+                        android:id="@+id/longitudeokasiEt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="Longitude Lokasi"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="5"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/spinnerLayout">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Kota Tujuan Pengiriman"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"/>
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/simpanBtn"

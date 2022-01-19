@@ -152,8 +152,7 @@ public class PengrajinTambahProdukActivity extends AppCompatActivity {
             RequestBody deskripsiR = RequestBody.create(MediaType.parse("text/plain"), deskripsi);
             RequestBody katR = RequestBody.create(MediaType.parse("text/plain"), kategori);
             RequestBody idR = RequestBody.create(MediaType.parse("text/plain"), AppPreference.getUser(this).idPengguna);
-
-
+            
             //image
             File file = new File(produkImg.getPath());
             RequestBody reqFile =  RequestBody.create(MediaType.parse("image/*"), file);
