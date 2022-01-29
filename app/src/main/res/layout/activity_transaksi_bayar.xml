@@ -77,14 +77,6 @@
                 android:text="Mohammad Nur Ali Furqon"
                 android:textColor="@color/black"/>
 
-            <TextView
-                android:id="@+id/nilaiBayarTv"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/black"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
