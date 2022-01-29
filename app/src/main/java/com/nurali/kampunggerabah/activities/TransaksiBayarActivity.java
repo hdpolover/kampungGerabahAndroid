@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.nurali.kampunggerabah.api.ApiClient;
 import com.nurali.kampunggerabah.api.ApiInterface;
+import com.nurali.kampunggerabah.api.Helper;
 import com.nurali.kampunggerabah.api.responses.BaseResponse;
 import com.nurali.kampunggerabah.databinding.ActivityTransaksiBayarBinding;
 import com.nurali.kampunggerabah.preferences.AppPreference;
@@ -44,6 +45,7 @@ public class TransaksiBayarActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String idTransaksi;
+    String total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class TransaksiBayarActivity extends AppCompatActivity {
         apiInterface = ApiClient.getClient();
 
         idTransaksi = getIntent().getStringExtra("id_transaksi");
+        total = getIntent().getStringExtra("total");
+
+        binding.nilaiBayarTv.setText("Transfer senilai " + Helper.formatRupiah(Integer.parseInt(total)));
 
         binding.idTransaksiTv.setText(idTransaksi);
 

@@ -242,6 +242,7 @@ public class ProdukCekoutActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Transaksi berhasil!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ProdukCekoutActivity.this, TransaksiBayarActivity.class);
                         i.putExtra("id_transaksi", idTransaksi);
+                        i.putExtra("total", totalHarga);
                         startActivity(i);
                     }
                 }

@@ -62,7 +62,28 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Disusun oleh: Nurali"
+                android:text="Disusun oleh:"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mohammad Nur Ali Furqon"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"/>
+
+            <TextView
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apabila terdapat kendala pada aplikasi, silakan hubungi nomor 0822-2935-3967 melalui WhatsApp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginTop="20dp"

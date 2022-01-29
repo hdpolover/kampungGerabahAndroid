@@ -55,6 +55,36 @@
                 android:text="Silakan lakukan pembayaran ke nomor rekening berikut ini:"
                 android:textColor="@color/black"/>
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bank BRI"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="639801004882502"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mohammad Nur Ali Furqon"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/nilaiBayarTv"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
