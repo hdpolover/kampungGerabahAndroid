@@ -203,7 +203,7 @@
                         <ImageView
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/pengaturan" />
+                            android:src="@drawable/tambah_akun" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:textColor="@color/black"
-                            android:text="Pengaturan"/>
+                            android:text="Tambah Akun"/>
 
                     </LinearLayout>
 

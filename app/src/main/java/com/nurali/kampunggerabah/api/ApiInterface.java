@@ -68,6 +68,11 @@ public interface ApiInterface {
             @Query("kategori") String kategori
     );
 
+    @GET("produk/get_kategori_customer")
+    Call<ProdukResponse> getKategoriProdukCustomer(
+            @Query("kategori") String kategori
+    );
+
     @Multipart
     @POST("produk/tambah")
     Call<BaseResponse> tambahProduk(
@@ -230,5 +235,15 @@ public interface ApiInterface {
     Call<BaseResponse> updateStok(
             @Query("id_produk") String idProduk,
             @Query("stok") String stok
+    );
+
+    @GET("transaksi/get_tr_berlangsung_pengrajin")
+    Call<TransaksiResponse> getTrBerlangsungPengrajin(
+            @Query("id_pengguna") String idPengguna
+    );
+
+    @GET("transaksi/get_tr_selesai_pengrajin")
+    Call<TransaksiResponse> getTrSelesaiPengrajin(
+            @Query("id_pengguna") String idPengguna
     );
 }

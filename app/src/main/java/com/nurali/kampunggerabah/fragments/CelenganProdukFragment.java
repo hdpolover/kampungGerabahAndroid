@@ -17,6 +17,7 @@ import com.nurali.kampunggerabah.adapters.ProdukAdapter;
 import com.nurali.kampunggerabah.api.ApiClient;
 import com.nurali.kampunggerabah.api.ApiInterface;
 import com.nurali.kampunggerabah.api.responses.ProdukResponse;
+import com.nurali.kampunggerabah.preferences.AppPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,28 +83,54 @@ public class CelenganProdukFragment extends Fragment {
     }
 
     private void tampilProduk(String kategori) {
-        apiInterface.getKategoriProduk(kategori).enqueue(new Callback<ProdukResponse>() {
-            @Override
-            public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
-                if (response.body().status) {
-                    List<ProdukResponse.ProdukModel> list = new ArrayList<>();
+        if (AppPreference.getUser(getContext()).peran.equals("customer")) {
+            apiInterface.getKategoriProdukCustomer(kategori).enqueue(new Callback<ProdukResponse>() {
+                @Override
+                public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
+                    if (response.body().status) {
+                        List<ProdukResponse.ProdukModel> list = new ArrayList<>();
 
-                    list.addAll(response.body().data);
+                        list.addAll(response.body().data);
 
-                    rv.setAdapter(new ProdukAdapter(list, getContext()));
+                        rv.setAdapter(new ProdukAdapter(list, getContext()));
 
-                    if (list.isEmpty()) {
-                        noData.setVisibility(View.VISIBLE);
-                    } else {
-                        noData.setVisibility(View.GONE);
+                        if (list.isEmpty()) {
+                            noData.setVisibility(View.VISIBLE);
+                        } else {
+                            noData.setVisibility(View.GONE);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ProdukResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ProdukResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            apiInterface.getKategoriProduk(kategori).enqueue(new Callback<ProdukResponse>() {
+                @Override
+                public void onResponse(Call<ProdukResponse> call, Response<ProdukResponse> response) {
+                    if (response.body().status) {
+                        List<ProdukResponse.ProdukModel> list = new ArrayList<>();
+
+                        list.addAll(response.body().data);
+
+                        rv.setAdapter(new ProdukAdapter(list, getContext()));
+
+                        if (list.isEmpty()) {
+                            noData.setVisibility(View.VISIBLE);
+                        } else {
+                            noData.setVisibility(View.GONE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ProdukResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }

@@ -79,13 +79,41 @@ public class TransaksiSelesaiFragment extends Fragment {
 
         PenggunaResponse.PenggunaModel p = AppPreference.getUser(getContext());
 
-        if (p.peran.equals("admin") || p.peran.equals("pengrajin")) {
+        if (p.peran.equals("admin")) {
             tampilTr("");
+        } else if (p.peran.equals("pengrajin")) {
+            tampilTrPengrajin(p.idPengguna);
         } else {
             tampilTr(p.idPengguna);
         }
 
         return view;
+    }
+
+    private void tampilTrPengrajin(String id) {
+        apiInterface.getTrSelesaiPengrajin(id).enqueue(new Callback<TransaksiResponse>() {
+            @Override
+            public void onResponse(Call<TransaksiResponse> call, Response<TransaksiResponse> response) {
+                if (response.body().status) {
+                    List<TransaksiResponse.TransaksiModel> list = new ArrayList<>();
+
+                    list.addAll(response.body().data);
+
+                    rv.setAdapter(new TransaksiAdapter(list, getContext()));
+
+                    if (list.isEmpty()) {
+                        noData.setVisibility(View.VISIBLE);
+                    } else {
+                        noData.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TransaksiResponse> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void tampilTr(String id) {
