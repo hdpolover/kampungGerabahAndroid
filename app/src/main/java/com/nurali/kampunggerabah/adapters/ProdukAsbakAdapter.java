@@ -14,20 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.nurali.kampunggerabah.R;
-import com.nurali.kampunggerabah.activities.PengrajinDetailActivity;
 import com.nurali.kampunggerabah.activities.ProdukDetailActivity;
 import com.nurali.kampunggerabah.api.Helper;
-import com.nurali.kampunggerabah.api.responses.PenggunaResponse;
 import com.nurali.kampunggerabah.api.responses.ProdukResponse;
 
 import java.util.List;
 
-public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder> {
+public class ProdukAsbakAdapter extends RecyclerView.Adapter<ProdukAsbakAdapter.ViewHolder> {
     private static List<ProdukResponse.ProdukModel> list;
     Context context;
 
-    public ProdukAdapter(List<ProdukResponse.ProdukModel> list, Context context) {
-        ProdukAdapter.list = list;
+    public ProdukAsbakAdapter(List<ProdukResponse.ProdukModel> list, Context context) {
+        ProdukAsbakAdapter.list = list;
         this.context = context;
     }
 

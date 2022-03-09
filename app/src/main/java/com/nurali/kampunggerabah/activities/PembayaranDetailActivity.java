@@ -41,12 +41,20 @@ public class PembayaranDetailActivity extends AppCompatActivity {
 
         if (!AppPreference.getUser(this).peran.equals("admin")) {
             binding.validasiPembayaranBtn.setVisibility(View.GONE);
+            binding.tolakPembayaranBtn.setVisibility(View.GONE);
         }
 
         binding.validasiPembayaranBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validasi();
+            }
+        });
+
+        binding.tolakPembayaranBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tolak();
             }
         });
 
@@ -104,6 +112,30 @@ public class PembayaranDetailActivity extends AppCompatActivity {
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "Validasi gagal", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Log.e("login", t.getMessage());
+            }
+        });
+    }
+
+    void tolak() {
+        apiInterface.tolakPembayaran(
+                idPembayaran
+        ).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response != null) {
+                    if (response.body().status) {
+                        Toast.makeText(getApplicationContext(), "Pembayaran berhasil ditolak. Silakan hubungi pengguna untuk upload ulang pembayaran.", Toast.LENGTH_LONG).show();
+                        onBackPressed();
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "gagal", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

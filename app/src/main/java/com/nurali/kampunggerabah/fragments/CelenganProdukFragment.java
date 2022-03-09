@@ -9,11 +9,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nurali.kampunggerabah.R;
-import com.nurali.kampunggerabah.adapters.ProdukAdapter;
+import com.nurali.kampunggerabah.adapters.ProdukCelenganAdapter;
 import com.nurali.kampunggerabah.api.ApiClient;
 import com.nurali.kampunggerabah.api.ApiInterface;
 import com.nurali.kampunggerabah.api.responses.ProdukResponse;
@@ -92,7 +91,7 @@ public class CelenganProdukFragment extends Fragment {
 
                         list.addAll(response.body().data);
 
-                        rv.setAdapter(new ProdukAdapter(list, getContext()));
+                        rv.setAdapter(new ProdukCelenganAdapter(list, getContext()));
 
                         if (list.isEmpty()) {
                             noData.setVisibility(View.VISIBLE);
@@ -116,7 +115,7 @@ public class CelenganProdukFragment extends Fragment {
 
                         list.addAll(response.body().data);
 
-                        rv.setAdapter(new ProdukAdapter(list, getContext()));
+                        rv.setAdapter(new ProdukCelenganAdapter(list, getContext()));
 
                         if (list.isEmpty()) {
                             noData.setVisibility(View.VISIBLE);

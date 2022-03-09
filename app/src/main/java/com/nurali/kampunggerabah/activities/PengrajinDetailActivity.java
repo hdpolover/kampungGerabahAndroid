@@ -2,27 +2,20 @@ package com.nurali.kampunggerabah.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nurali.kampunggerabah.R;
-import com.nurali.kampunggerabah.adapters.PengrajinAdapter;
-import com.nurali.kampunggerabah.adapters.ProdukAdapter;
+import com.nurali.kampunggerabah.adapters.ProdukCelenganAdapter;
 import com.nurali.kampunggerabah.api.ApiClient;
 import com.nurali.kampunggerabah.api.ApiInterface;
-import com.nurali.kampunggerabah.api.responses.BaseResponse;
 import com.nurali.kampunggerabah.api.responses.PenggunaResponse;
 import com.nurali.kampunggerabah.api.responses.ProdukResponse;
-import com.nurali.kampunggerabah.databinding.ActivityAdminDaftarUmkmBinding;
 import com.nurali.kampunggerabah.databinding.ActivityPengrajinDetailBinding;
-import com.nurali.kampunggerabah.preferences.AppPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +103,7 @@ public class PengrajinDetailActivity extends AppCompatActivity {
 
                     list.addAll(response.body().data);
 
-                    binding.rv.setAdapter(new ProdukAdapter(list, getApplicationContext()));
+                    binding.rv.setAdapter(new ProdukCelenganAdapter(list, getApplicationContext()));
 
                     if (list.isEmpty()) {
                         binding.noProdukLayout.setVisibility(View.VISIBLE);

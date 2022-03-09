@@ -146,6 +146,11 @@ public interface ApiInterface {
             @Query("id_transaksi") String idTransaksi
     );
 
+    @GET("pembayaran/tolak")
+    Call<BaseResponse> tolakPembayaran(
+            @Query("id_pembayaran") String idPembayaran
+    );
+
     @GET("transaksi/update_resi")
     Call<BaseResponse> updateResi(
             @Query("no_resi") String noResi,
